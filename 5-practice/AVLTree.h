@@ -9,7 +9,7 @@
 #include <algorithm>
 
 class AVLTree {
-
+public:
     class Node {
     public:
         int key_;
@@ -21,6 +21,12 @@ class AVLTree {
         Node(int key, std::string value);
     };
 
+    static Node *Search(Node *node, int key);
+
+    static Node *GetMin(Node *node);
+
+    static Node *GetMax(Node *node);
+
     static int GetHeight(Node *node);
 
     static void UpdateHeight(Node *node);
@@ -29,11 +35,15 @@ class AVLTree {
 
     static void Swap(Node *a, Node *b);
 
+    static void Balance(Node *node);
 
-    void RightRotate(Node *node);
+    static void RightRotate(Node *node);
 
-    void LeftRotate(Node *node);
+    static void LeftRotate(Node *node);
 
+    static void Insert(Node *node, int key, std::string value);
+
+    static Node *Delete(Node *node, int key);
 };
 
 
