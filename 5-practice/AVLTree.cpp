@@ -114,3 +114,25 @@ AVLTree::Node *AVLTree::GetMax(AVLTree::Node *node) {
     if (node->right_ == nullptr) return node;
     return GetMax(node->right_);
 }
+
+void AVLTree::SimetricalTraversal(AVLTree::Node *node, void (*show)(Node *)) {
+    if (node != nullptr) {
+        SimetricalTraversal(node->left_, show);
+        show(node);
+        SimetricalTraversal(node->right_, show);
+    }
+}
+
+void AVLTree::DepthFirstTraversal(AVLTree::Node *node, void (*show)(Node *)) {
+    if (node != nullptr) {
+        show(node);
+        DepthFirstTraversal(node->left_, show);
+        DepthFirstTraversal(node->right_, show);
+    }
+}
+
+std::string AVLTree::SumOfLeafValues(AVLTree::Node *node) {
+    if (node == nullptr) return "";
+    if ((node->left_ == nullptr) && (node->right_ == nullptr)) return node->value_;
+    return SumOfLeafValues(node->left_) + SumOfLeafValues(node->right_);
+}

@@ -21,6 +21,10 @@ public:
         Node(int key, std::string value);
     };
 
+    static void SimetricalTraversal(Node *node, void(*show)(Node *node));
+
+    static void DepthFirstTraversal(Node *node, void(*show)(Node *node));
+
     static Node *Search(Node *node, int key);
 
     static Node *GetMin(Node *node);
@@ -44,6 +48,8 @@ public:
     static void Insert(Node *node, int key, std::string value);
 
     static Node *Delete(Node *node, int key);
+
+    static std::string SumOfLeafValues(Node *node);
 };
 
 
