@@ -153,7 +153,7 @@ vector<ShannonFanoNode *> createLettersMapShannonFano(string &str) {
     return nodes;
 }
 
-ShannonFanoNode *findByCodeShannonFano(string code, vector<ShannonFanoNode *> &nodes) {
+ShannonFanoNode *findByCodeShannonFano(const string &code, vector<ShannonFanoNode *> &nodes) {
     for (auto &cell: nodes) {
         if (cell->code == code)
             return cell;
@@ -198,8 +198,8 @@ struct Token {
     Token(int o, int l, char c) : offset(o), length(l), nextChar(c) {}
 };
 
-vector<Token> compressLZ77(const std::string &input) {
-    std::vector<Token> compressed;
+vector<Token> compressLZ77(const string &input) {
+    vector<Token> compressed;
     int inputSize = static_cast<int>(input.size());
     int currentPosition = 0;
 
@@ -233,8 +233,8 @@ vector<Token> compressLZ77(const std::string &input) {
     return compressed;
 }
 
-string decompressLZ77(const std::vector<Token> &compressed) {
-    std::string decompressed;
+string decompressLZ77(const vector<Token> &compressed) {
+    string decompressed;
 
     for (const Token &token: compressed) {
         if (token.length > 0) {
@@ -289,11 +289,11 @@ string decompressLZ78(vector<pair<int, char>> data) {
 int main() {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
-    std::cout << "Choose task:\n"
-                 "1 - Huffmann\n"
-                 "2 - Shannon-Fano\n"
-                 "3 - LZ77\n"
-                 "4 - LZ78\n";
+    cout << "Choose task:\n"
+            "1 - Huffmann\n"
+            "2 - Shannon-Fano\n"
+            "3 - LZ77\n"
+            "4 - LZ78\n";
     int choice;
     cin >> choice;
     switch (choice) {
@@ -345,7 +345,7 @@ int main() {
         case 2: {
             ifstream input_file("input.txt");
             if (!input_file.is_open()) {
-                std::cerr << "Failed to open the file!" << std::endl;
+                cerr << "Failed to open the file!" << endl;
                 return 1;
             }
             string message;
@@ -372,7 +372,7 @@ int main() {
             vector<Token> compressedData = compressLZ77(message);
             cout << "Compressed Message:\n";
             for (const Token &token: compressedData) {
-                std::cout << "(" << token.offset << ", " << token.length << ", " << token.nextChar << ") ";
+                cout << "(" << token.offset << ", " << token.length << ", " << token.nextChar << ") ";
             }
             cout << "\n";
             string decompressedString = decompressLZ77(compressedData);
