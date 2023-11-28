@@ -4,5 +4,6 @@ project(4-practice)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(
-        6-practice 6-practice/main.cpp
+        7-practice
+        7-practice/main.cpp
 )
